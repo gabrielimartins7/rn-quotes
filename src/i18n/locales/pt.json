@@ -1,0 +1,9 @@
+{
+    "common": {
+        "budget": "Orçamento",
+        "sketch": "Você tem 1 item em rascunho",
+        "new": "Novo",
+        "search": "Título ou cliente",
+        "cancel": "Cancelar"
+    }
+}

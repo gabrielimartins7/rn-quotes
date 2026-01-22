@@ -18,10 +18,8 @@ const theme = {
 } as const;
 
 const spacing = {
-  // Unidade base
   unit: 8,
 
-  // Espaçamentos comuns
   xs: theme[4],
   sm: theme[8],
   md: theme[16],
@@ -29,7 +27,6 @@ const spacing = {
   xl: theme[32],
   xxl: theme[40],
 
-  // Casos específicos
   padding: {
     xs: theme[4],
     sm: theme[8],
