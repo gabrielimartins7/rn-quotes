@@ -2,9 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Button from './Button';
 
-import { colors } from 'theme/colors';
-import { typography } from 'theme/typography';
-import { spacing } from 'theme/spacing';
+import { theme } from 'theme';
 
 import { translate } from 'i18n';
 
@@ -38,19 +36,19 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     textContainer: {
-        gap: spacing.gap.xs,
+        gap: theme.spacing.gap.xs,
     },
     title: {
-        color: colors.purple.base,
-        fontSize: typography.title.lg.size,
-        fontWeight: typography.title.lg.weight,
+        color: theme.colors.purple.base,
+        fontSize: theme.typography.title.lg.size,
+        fontWeight: theme.typography.title.lg.weight,
     },
     description: {
-        fontSize: typography.text.sm.size,
-        fontWeight: typography.text.sm.weight,
+        fontSize: theme.typography.text.sm.size,
+        fontWeight: theme.typography.text.sm.weight,
     },
     divider: {
         borderBottomWidth: 1,
-        borderBottomColor: colors.gray[400], 
+        borderBottomColor: theme.colors.gray[300], 
     }
 });

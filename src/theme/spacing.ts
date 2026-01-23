@@ -48,6 +48,14 @@ const spacing = {
     sm: theme[8],
     md: theme[12],
   },
+
+  radius: {
+    xs: theme[8],
+    sm: theme[12],
+    md: theme[32],
+    lg: theme[40],
+    rounded: 9999,
+  }
 } as const;
 
 export { theme, spacing };

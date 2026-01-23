@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: theme.spacing.sm,
     paddingVertical: 6,
-    borderRadius: 999,
+    borderRadius: theme.spacing.radius.rounded,
     alignSelf: 'flex-start',
     gap: theme.spacing.xs,
   },
@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
   dot: {
     width: 8,
     height: 8,
-    borderRadius: 999,
+    borderRadius: theme.spacing.radius.rounded,
   },
 });

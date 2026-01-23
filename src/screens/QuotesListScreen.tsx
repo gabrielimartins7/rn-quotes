@@ -3,9 +3,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Header from '../components/Header';
 import InputSearch from 'components/InputSearch';
+import Filter from 'components/Filter';
 
 import { theme } from '../theme';
 import { translate } from 'i18n';
+import Card from 'components/Card';
 
 export default function QuotesListScreen() {
   const insets = useSafeAreaInsets();
@@ -20,7 +22,18 @@ export default function QuotesListScreen() {
         description={translate('common.sketch')}
         onPress={() =>{}}
       />
-      <InputSearch icon="search" />
+      <View style={styles.content}>
+        <InputSearch icon="search" />
+        <Filter onPress={() => {}} />
+      </View>
+
+      <Card
+        title="Orçamento 1"
+        description="Descrição do orçamento 1"
+        status="Aprovado"
+        amount="R$ 1.000,00"
+      />
+
     </View>
   );
 }
@@ -29,5 +42,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: theme.spacing.md,
+    backgroundColor: theme.colors.white,
   },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing.lg,
+    marginBottom: theme.spacing.lg,
+  }
 });
