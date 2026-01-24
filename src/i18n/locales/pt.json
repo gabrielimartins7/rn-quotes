@@ -4,6 +4,11 @@
         "sketch": "Você tem 1 item em rascunho",
         "new": "Novo",
         "search": "Título ou cliente",
+        "filter": "Filtrar e ordenar",
+        "status": "Status",
+        "ordering": "Ordenação",
+        "reset": "Resetar filtros",
+        "apply": "Aplicar",
         "cancel": "Cancelar"
     }
 }
