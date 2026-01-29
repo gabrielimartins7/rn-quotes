@@ -1,5 +1,8 @@
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/types';
 
 import Header from '../components/Header';
 import InputSearch from 'components/InputSearch';
@@ -9,12 +12,16 @@ import BottomSheet from 'components/BottomSheet';
 import SelectFilter from 'components/SelectFilter';
 
 import { useQuotesListScreen } from '../hooks/useQuotesListScreen';
+import { getDetailsOptionsFilterSection } from 'config/detailsOptionsFilterSection';
 
 import { theme } from '../theme';
 import { translate } from 'i18n';
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'QuotesList'>;
+
 export default function QuotesListScreen() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<NavigationProp>();
 
   const {
     filters,
@@ -27,6 +34,13 @@ export default function QuotesListScreen() {
     setStatusFilter,
     setSortBy,
   } = useQuotesListScreen();
+
+  const sections = getDetailsOptionsFilterSection({
+    filters,
+    setStatusFilter,
+    setSortBy,
+    t: translate,
+  });
 
   return (
     <View
@@ -41,7 +55,7 @@ export default function QuotesListScreen() {
       <Header
         title={translate('common.budget')}
         description={translate('common.sketch')}
-        onPress={() => {}}
+        onPress={() => navigation.navigate('QuoteForm')}
       />
 
       <View style={styles.content}>
@@ -63,9 +77,10 @@ export default function QuotesListScreen() {
         sheetStyle={filterSheetAnimatedStyle}
       >
         <SelectFilter
-          filters={filters}
-          onSelectStatus={setStatusFilter}
-          onSelectSortBy={setSortBy}
+          title={translate('common.filter')}
+          sections={sections}
+          clearLabel={translate('common.reset')}
+          applyLabel={translate('common.apply')}
           onClear={clearFilters}
           onApply={closeFilterSheet}
         />

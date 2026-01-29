@@ -85,7 +85,7 @@ function getPalette(variant: Variant) {
         bg: theme.colors.gray[100],
         fg: theme.colors.purple.base,
         icon: theme.colors.purple.base,
-        border: theme.colors.purple.base,
+        border: theme.colors.gray[300],
       };
     case 'danger':
       return {

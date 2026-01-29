@@ -1,92 +1,139 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { QuoteStatus } from '../types/quote';
+import React from 'react';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { theme } from 'theme';
-import { translate } from 'i18n';
 import Button from './Button';
+import Check from './Check';
+import Radio from './Radio';
 
-type SortBy = 'recent' | 'oldest' | 'amount_high' | 'amount_low';
+type ControlType = 'checkbox' | 'radio';
 
-type Filters = {
-  status: QuoteStatus | 'Todos';
-  sortBy: SortBy;
+export type FilterOption = {
+  key: string;
+  label?: string;
+  selected: boolean;
+  onPress: () => void;
+  right?: React.ReactNode;
+};
+
+export type FilterSection = {
+  key: string;
+  title: string;
+  type: ControlType;
+  options: FilterOption[];
 };
 
 type SelectFilterProps = {
-  filters: Filters;
-  onSelectStatus: (status: Filters['status']) => void;
-  onSelectSortBy: (sortBy: Filters['sortBy']) => void;
+  title: string;
+  sections: FilterSection[];
   onClear: () => void;
   onApply: () => void;
+  clearLabel: string;
+  applyLabel: string;
 };
 
 export default function SelectFilter({
-  filters,
-  onSelectStatus,
-  onSelectSortBy,
+  title,
+  sections,
   onClear,
   onApply,
+  clearLabel,
+  applyLabel,
 }: SelectFilterProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.sheetTitle}>{translate('common.filter')}</Text>
-      <View style={styles.divider} />
-
-      <Text style={styles.sheetLabel}>{translate('common.status')}</Text>
-      <Text style={styles.sheetLabel}>Status atual: {filters.status}</Text>
-      <Text style={styles.sheetLabel}>{translate('common.ordering')}</Text>
-      <View style={styles.row}>
-        <Pressable onPress={() => onSelectStatus('Todos')}>
-          <Text>Todos</Text>
-        </Pressable>
-        <Pressable onPress={() => onSelectStatus('Rascunho')}>
-          <Text>Rascunho</Text>
-        </Pressable>
-        <Pressable onPress={() => onSelectStatus('Aprovado')}>
-          <Text>Aprovado</Text>
-        </Pressable>
+      <View>
+        <Text style={styles.sheetTitle}>{title}</Text>
+        <View style={styles.divider} />
       </View>
 
-      <Text style={styles.sheetLabel}>Ordenação atual: {filters.sortBy}</Text>
-      <View style={styles.row}>
-        <Pressable onPress={() => onSelectSortBy('recent')}>
-          <Text>Recentes</Text>
-        </Pressable>
-        <Pressable onPress={() => onSelectSortBy('oldest')}>
-          <Text>Antigos</Text>
-        </Pressable>
+      <View style={styles.content}>
+        {sections.map((section) => (
+          <View key={section.key} style={styles.section}>
+            <Text style={styles.sectionTitle}>{section.title}</Text>
+
+            {section.options.map((opt) => (
+              <Pressable key={opt.key} onPress={opt.onPress} style={styles.rowStatus}>
+                {section.type === 'checkbox' ? (
+                  <Check checked={opt.selected} onChange={opt.onPress} />
+                ) : (
+                  <Radio checked={opt.selected} onChange={opt.onPress} />
+                )}
+
+                {opt.right ? opt.right : opt.label ? <Text>{opt.label}</Text> : null}
+              </Pressable>
+            ))}
+          </View>
+        ))}
       </View>
-      
-      <View style={styles.divider} />
-      <View style={styles.row}>
-        <Button
-            title={translate('common.reset')}
-            variant='secondary'
-            onPress={onClear}
-        />
-        <Button title={translate('common.apply')} onPress={onApply} />
+
+      <View style={styles.footer}>
+        <View style={styles.divider} />
+        <View style={styles.row}>
+          <Button title={clearLabel} variant="secondary" onPress={onClear} />
+          <Button title={applyLabel} onPress={onApply} />
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { gap: theme.spacing.sm },
+  container: {
+    flex: 1,
+    gap: theme.spacing.sm,
+  },
+  content: {
+    flex: 1,
+  },
+  section: { marginTop: theme.spacing.md },
+  footer: {
+    marginTop: 'auto',
+  },
   sheetTitle: {
     fontFamily: 'Lato_700Bold',
     fontSize: 18,
     color: theme.colors.gray[700],
+    paddingVertical: 11,
   },
   divider: {
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.gray[300], 
+    borderBottomColor: theme.colors.gray[300],
   },
-  sheetLabel: {
-    fontFamily: 'Lato_700Bold',
-    color: theme.colors.gray[700],
+  contentStatus: {
+    marginTop: theme.spacing.md,
+  },
+  textStatus: {
+    marginBottom: theme.spacing.md,
+  },
+  rowStatus: {
+    flexDirection: 'row',
+    marginBottom: 12,
+    gap: theme.spacing.gap.md,
   },
   row: {
     flexDirection: 'row',
-    gap: theme.spacing.sm,
+    gap: theme.spacing.md,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing.md,
+  },
+   contentSection: {
+    marginTop: theme.spacing.md,
+  },
+  sectionTitle: {
+    marginBottom: theme.spacing.md,
+  },
+   rowOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    gap: theme.spacing.gap.md,
+  },
+  rowButtons: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing.md,
   },
 });

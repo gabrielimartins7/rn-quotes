@@ -7,6 +7,10 @@
         "filter": "Filtrar e ordenar",
         "status": "Status",
         "ordering": "Ordenação",
+        "latest": "Mais recentes",
+        "oldest": "Mais antigos",
+        "greaterValue": "Maior valor",
+        "lowerValue": "Menor valor",
         "reset": "Resetar filtros",
         "apply": "Aplicar",
         "cancel": "Cancelar"

@@ -9,7 +9,7 @@ export type QuotesFilters = {
   sortBy: SortBy;
 };
 
-const FILTER_SHEET_HEIGHT = 420;
+const FILTER_SHEET_HEIGHT = 600;
 
 const DEFAULT_FILTERS: QuotesFilters = {
   status: 'Todos',
