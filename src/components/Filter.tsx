@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
         borderColor: theme.colors.gray[300],
         backgroundColor: theme.colors.gray[100],
         borderRadius: theme.spacing.radius.rounded,
-        padding: theme.spacing.unit,
+        padding: theme.spacing.sm,
     }
 });

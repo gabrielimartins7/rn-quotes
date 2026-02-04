@@ -13,6 +13,10 @@
         "lowerValue": "Menor valor",
         "reset": "Resetar filtros",
         "apply": "Aplicar",
-        "cancel": "Cancelar"
+        "cancel": "Cancelar",
+        "budgets": "Orçamentos",
+        "title": "Título",
+        "client": "Cliente",
+        "generalInfo": "Informações gerais"
     }
 }

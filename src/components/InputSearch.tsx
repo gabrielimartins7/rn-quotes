@@ -5,9 +5,10 @@ import { theme } from 'theme';
 
 type InputSearchProps = {
   icon?: keyof typeof MaterialIcons.glyphMap;
+  placeholder?: string;
 };
 
-export default function InputSearch({ icon }: InputSearchProps) {
+export default function InputSearch({ icon, placeholder }: InputSearchProps) {
   return (
     <View style={styles.container}>
       {icon ? (
@@ -16,7 +17,7 @@ export default function InputSearch({ icon }: InputSearchProps) {
 
       <TextInput
         style={styles.input}
-        placeholder={translate('common.search')}
+        placeholder={placeholder || translate('common.search')}
         placeholderTextColor={theme.colors.gray[400]}
         autoCorrect={false}
         autoCapitalize="none"

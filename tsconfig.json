@@ -4,7 +4,10 @@
     "ignoreDeprecations": "6.0",
     "strict": true,
     "baseUrl": ".",
-    "paths": { "*": ["src/*"] },
+    "paths": {
+      "*": ["src/*"],
+      "@assets/*": ["src/assets/*"]
+    },
     "typeRoots": ["./node_modules/@types", "./src/@types"]
   }
 }

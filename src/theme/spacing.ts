@@ -18,7 +18,7 @@ const theme = {
 } as const;
 
 const spacing = {
-  unit: 8,
+  unit: 12,
 
   xs: theme[4],
   sm: theme[8],
