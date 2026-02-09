@@ -1,30 +1,50 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import ScreenHeader from 'components/ScreenHeader';
 import InputSearch from 'components/InputSearch';
+import InfoSection from 'components/InfoSection';
+import Radio from 'components/Radio';
 import Store from '@assets/store.svg';
+import LabelStatus from '@assets/labelStatus.svg';
+
+import { useQuoteFormScreen } from 'hooks/useQuoteFormScreen';
 
 import { translate } from 'i18n';
 import { theme } from 'theme';
 
 export default function QuoteFormScreen() {
   const insets = useSafeAreaInsets();
+  const { onBack } = useQuoteFormScreen();
   return (
     <View style={[styles.container, { paddingTop: insets.top + theme.spacing.md }]}>
-      <ScreenHeader title={translate('common.budgets')} onBack={() => {}} />
+      <ScreenHeader title={translate('common.budgets')} onBack={onBack} />
       <View style={styles.content}>
-        <View style={styles.generalInfo}>
-          <View style={styles.generalInfoRow}>
-            <Store width={18} height={18} />
-            <Text style={styles.generalInfoText}>{translate('common.generalInfo')}</Text>
-          </View>
-          <View style={styles.divider} />
+        <InfoSection
+          icon={<Store width={18} height={18} />}
+          title={translate('common.generalInfo')}
+        >
           <View style={styles.contentInput}>
             <InputSearch placeholder={translate('common.title')} />
             <InputSearch placeholder={translate('common.client')} />
           </View>
-        </View>
+        </InfoSection>
+
+        <InfoSection
+          icon={<LabelStatus width={18} height={18} />}
+          title={translate('common.generalInfo')}
+        >
+          <View style={styles.contentStatus}>
+            <View style={styles.radioBox}>
+              <Radio checked={false} onChange={() => {}} />
+              <Radio checked={false} onChange={() => {}} />
+            </View>
+            <View style={styles.radioBox}>
+              <Radio checked={false} onChange={() => {}} />
+              <Radio checked={false} onChange={() => {}} />
+            </View>
+          </View>
+        </InfoSection>
       </View>
     </View>
   );
@@ -62,5 +82,13 @@ const styles = StyleSheet.create({
   contentInput: {
     gap: theme.spacing.unit,
     padding: theme.spacing.md,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contentStatus: {
+    flexDirection: 'row',
+  },
+  radioBox: {
+    gap: theme.spacing.unit,
   }
 });
