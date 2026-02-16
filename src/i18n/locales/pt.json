@@ -17,6 +17,8 @@
         "budgets": "Orçamentos",
         "title": "Título",
         "client": "Cliente",
-        "generalInfo": "Informações gerais"
+        "generalInfo": "Informações gerais",
+        "servicesIncluded": "Serviços inclusos",
+        "addServices": "Adicionar serviço"
     }
 }

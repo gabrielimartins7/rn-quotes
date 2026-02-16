@@ -13,6 +13,7 @@ interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   style?: ViewStyle;
+  containerStyle?: ViewStyle;
   accessibilityLabel?: string;
 }
 
@@ -24,6 +25,7 @@ export default function Button({
   disabled = false,
   loading = false,
   style,
+  containerStyle,
   accessibilityLabel,
 }: ButtonProps) {
   const isDisabled = disabled || loading;
@@ -45,15 +47,15 @@ export default function Button({
           opacity: isDisabled ? 0.6 : pressed ? 0.92 : 1,
         },
         style,
+        containerStyle,
       ]}
     >
       {loading ? (
         <ActivityIndicator color={palette.fg} />
       ) : (
         <View style={styles.content}>
-          {icon ? (
-            <MaterialIcons name={icon} size={20} color={palette.icon} />
-          ) : null}
+          {icon ? <MaterialIcons name={icon} size={20} color={palette.icon} /> : null}
+
           <Text
             style={[
               styles.text,
